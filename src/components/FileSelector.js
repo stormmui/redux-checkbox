@@ -30,12 +30,7 @@ class FileSelector extends React.Component {
   handleClick() {
     const key = this.props.repo;
     const myAry = this.state.checked;
-    if (myAry.length === 0) {
-      console.log("Nothing was written to local storage");
-    } else {
-      console.log(key, myAry);
-      localStorage.setItem(key, JSON.stringify(myAry));
-    }
+    localStorage.setItem(key, JSON.stringify(myAry));
   }
 
   handleToggle = value => () => {
