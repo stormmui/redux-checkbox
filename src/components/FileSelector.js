@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -19,9 +19,22 @@ const styles = theme => ({
 });
 
 class FileSelector extends React.Component {
-  state = {
-    checked: [0]
-  };
+  constructor(props) {
+    super(props);
+    this.state = { checked: [] };
+
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    const myAry = this.state.checked;
+    if (myAry.length === 0) {
+      console.log("Nothing was written to local storage");
+    } else {
+      console.log("Write data to local storage");
+    }
+  }
 
   handleToggle = value => () => {
     const { checked } = this.state;
@@ -64,7 +77,12 @@ class FileSelector extends React.Component {
           ))}
         </List>
 
-        <Button variant="raised" color="primary" className={classes.button}>
+        <Button
+          onClick={this.handleClick}
+          variant="raised"
+          color="primary"
+          className={classes.button}
+        >
           Save to LocalStorage
         </Button>
       </div>
