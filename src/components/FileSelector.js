@@ -24,10 +24,18 @@ class FileSelector extends React.Component {
     this.state = { checked: [] };
 
     // This binding is necessary to make `this` work in the callback
-    this.handleClick = this.handleClick.bind(this);
+    this.handleSave = this.handleSave.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
 
-  handleClick() {
+  handleClear() {
+    const key = this.props.repo;
+    this.setState({ checked: [] });
+    localStorage.removeItem(key);
+    console.log(this.state);
+  }
+
+  handleSave() {
     const key = this.props.repo;
     const myAry = this.state.checked;
     localStorage.setItem(key, JSON.stringify(myAry));
@@ -75,12 +83,21 @@ class FileSelector extends React.Component {
         </List>
 
         <Button
-          onClick={this.handleClick}
+          onClick={this.handleSave}
           variant="raised"
           color="primary"
           className={classes.button}
         >
           Save to LocalStorage
+        </Button>
+
+        <Button
+          onClick={this.handleClear}
+          variant="raised"
+          color="secondary"
+          className={classes.button}
+        >
+          Clear Data
         </Button>
       </div>
     );
