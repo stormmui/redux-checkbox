@@ -9,7 +9,7 @@ import {
 import Picker from "../components/Picker";
 import Posts from "../components/Posts";
 import Files from "../components/Files";
-import CheckboxList from "../components/CheckboxList";
+import FileSelector from "../components/FileSelector";
 
 class AsyncApp extends Component {
   constructor(props) {
@@ -78,7 +78,7 @@ class AsyncApp extends Component {
 
         {posts.length > 0 && (
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <CheckboxList files={posts} />
+            <FileSelector files={posts} />
           </div>
         )}
       </div>
