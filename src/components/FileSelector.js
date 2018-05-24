@@ -28,11 +28,13 @@ class FileSelector extends React.Component {
   }
 
   handleClick() {
+    const key = this.props.repo;
     const myAry = this.state.checked;
     if (myAry.length === 0) {
       console.log("Nothing was written to local storage");
     } else {
-      console.log("Write data to local storage");
+      console.log(key, myAry);
+      localStorage.setItem(key, JSON.stringify(myAry));
     }
   }
 
@@ -92,6 +94,7 @@ class FileSelector extends React.Component {
 
 FileSelector.propTypes = {
   classes: PropTypes.object.isRequired,
+  repo: PropTypes.string.isRequired,
   files: PropTypes.array.isRequired
 };
 

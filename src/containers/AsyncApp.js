@@ -78,7 +78,7 @@ class AsyncApp extends Component {
 
         {posts.length > 0 && (
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <FileSelector files={posts} />
+            <FileSelector repo={selectedSubreddit} files={posts} />
           </div>
         )}
       </div>
