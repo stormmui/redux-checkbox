@@ -64,17 +64,6 @@ class AsyncApp extends Component {
         </p>
         {isFetching && posts.length === 0 && <h2>Loading...</h2>}
         {!isFetching && posts.length === 0 && <h2>Empty.</h2>}
-        {posts.length > 0 && (
-          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <Posts posts={posts} />
-          </div>
-        )}
-
-        {posts.length > 0 && (
-          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <Files files={posts} />
-          </div>
-        )}
 
         {posts.length > 0 && (
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
