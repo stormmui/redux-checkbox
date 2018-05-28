@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
-  selectSubreddit,
+  selectDatadir,
   fetchPostsIfNeeded,
-  invalidateSubreddit
+  invalidateDatadir
 } from "../actions";
 import Picker from "../components/Picker";
 import FileSelector from "../components/FileSelector";
@@ -17,36 +17,36 @@ class AsyncApp extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, selectedSubreddit } = this.props;
-    dispatch(fetchPostsIfNeeded(selectedSubreddit));
+    const { dispatch, selectedDatadir } = this.props;
+    dispatch(fetchPostsIfNeeded(selectedDatadir));
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.selectedSubreddit !== prevProps.selectedSubreddit) {
-      const { dispatch, selectedSubreddit } = this.props;
-      dispatch(fetchPostsIfNeeded(selectedSubreddit));
+    if (this.props.selectedDatadir !== prevProps.selectedDatadir) {
+      const { dispatch, selectedDatadir } = this.props;
+      dispatch(fetchPostsIfNeeded(selectedDatadir));
     }
   }
 
-  handleChange(nextSubreddit) {
-    this.props.dispatch(selectSubreddit(nextSubreddit));
-    this.props.dispatch(fetchPostsIfNeeded(nextSubreddit));
+  handleChange(nextDatadir) {
+    this.props.dispatch(selectDatadir(nextDatadir));
+    this.props.dispatch(fetchPostsIfNeeded(nextDatadir));
   }
 
   handleRefreshClick(e) {
     e.preventDefault();
 
-    const { dispatch, selectedSubreddit } = this.props;
-    dispatch(invalidateSubreddit(selectedSubreddit));
-    dispatch(fetchPostsIfNeeded(selectedSubreddit));
+    const { dispatch, selectedDatadir } = this.props;
+    dispatch(invalidateDatadir(selectedDatadir));
+    dispatch(fetchPostsIfNeeded(selectedDatadir));
   }
 
   render() {
-    const { selectedSubreddit, posts, isFetching, lastUpdated } = this.props;
+    const { selectedDatadir, posts, isFetching, lastUpdated } = this.props;
     return (
       <div>
         <Picker
-          value={selectedSubreddit}
+          value={selectedDatadir}
           onChange={this.handleChange}
           options={["reactjs", "frontend"]}
         />
@@ -65,7 +65,7 @@ class AsyncApp extends Component {
 
         {posts.length > 0 && (
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <FileSelector repo={selectedSubreddit} files={posts} />
+            <FileSelector repo={selectedDatadir} files={posts} />
           </div>
         )}
       </div>
@@ -74,7 +74,7 @@ class AsyncApp extends Component {
 }
 
 AsyncApp.propTypes = {
-  selectedSubreddit: PropTypes.string.isRequired,
+  selectedDatadir: PropTypes.string.isRequired,
   posts: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
@@ -82,16 +82,16 @@ AsyncApp.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { selectedSubreddit, postsBySubreddit } = state;
-  const { isFetching, lastUpdated, items: posts } = postsBySubreddit[
-    selectedSubreddit
+  const { selectedDatadir, postsByDatadir } = state;
+  const { isFetching, lastUpdated, items: posts } = postsByDatadir[
+    selectedDatadir
   ] || {
     isFetching: true,
     items: []
   };
 
   return {
-    selectedSubreddit,
+    selectedDatadir,
     posts,
     isFetching,
     lastUpdated

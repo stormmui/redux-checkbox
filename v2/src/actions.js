@@ -2,19 +2,19 @@ import fetch from "cross-fetch";
 
 export const REQUEST_POSTS = "REQUEST_POSTS";
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
-export const SELECT_SUBREDDIT = "SELECT_SUBREDDIT";
-export const INVALIDATE_SUBREDDIT = "INVALIDATE_SUBREDDIT";
+export const SELECT_DATADIR = "SELECT_DATADIR";
+export const INVALIDATE_DATADIR = "INVALIDATE_DATADIR";
 
-export function selectSubreddit(datadir) {
+export function selectDatadir(datadir) {
   return {
-    type: SELECT_SUBREDDIT,
+    type: SELECT_DATADIR,
     datadir
   };
 }
 
-export function invalidateSubreddit(datadir) {
+export function invalidateDatadir(datadir) {
   return {
-    type: INVALIDATE_SUBREDDIT,
+    type: INVALIDATE_DATADIR,
     datadir
   };
 }
@@ -47,7 +47,7 @@ function fetchPosts(datadir) {
 }
 
 function shouldFetchPosts(state, datadir) {
-  const posts = state.postsBySubreddit[datadir];
+  const posts = state.postsByDatadir[datadir];
   if (!posts) {
     return true;
   } else if (posts.isFetching) {

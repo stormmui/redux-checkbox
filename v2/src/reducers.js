@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux'
 import {
-  SELECT_SUBREDDIT,
-  INVALIDATE_SUBREDDIT,
+  SELECT_DATADIR,
+  INVALIDATE_DATADIR,
   REQUEST_POSTS,
   RECEIVE_POSTS
 } from './actions'
 
-function selectedSubreddit(state = 'reactjs', action) {
+function selectedDatadir(state = 'reactjs', action) {
   switch (action.type) {
-    case SELECT_SUBREDDIT:
+    case SELECT_DATADIR:
       return action.datadir
     default:
       return state
@@ -24,7 +24,7 @@ function posts(
   action
 ) {
   switch (action.type) {
-    case INVALIDATE_SUBREDDIT:
+    case INVALIDATE_DATADIR:
       return Object.assign({}, state, {
         didInvalidate: true
       })
@@ -45,9 +45,9 @@ function posts(
   }
 }
 
-function postsBySubreddit(state = {}, action) {
+function postsByDatadir(state = {}, action) {
   switch (action.type) {
-    case INVALIDATE_SUBREDDIT:
+    case INVALIDATE_DATADIR:
     case RECEIVE_POSTS:
     case REQUEST_POSTS:
       return Object.assign({}, state, {
@@ -59,8 +59,8 @@ function postsBySubreddit(state = {}, action) {
 }
 
 const rootReducer = combineReducers({
-  postsBySubreddit,
-  selectedSubreddit
+  postsByDatadir,
+  selectedDatadir
 })
 
 export default rootReducer
