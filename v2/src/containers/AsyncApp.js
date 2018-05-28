@@ -48,7 +48,7 @@ class AsyncApp extends Component {
         <Picker
           value={selectedDatadir}
           onChange={this.handleChange}
-          options={["reactjs", "frontend"]}
+          options={["data2", "data3"]}
         />
         <p>
           {lastUpdated && (

@@ -5,6 +5,11 @@ export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const SELECT_DATADIR = "SELECT_DATADIR";
 export const INVALIDATE_DATADIR = "INVALIDATE_DATADIR";
 
+const dataMap = {
+  data1: "data2",
+  data2: "data3"
+};
+
 export function selectDatadir(datadir) {
   return {
     type: SELECT_DATADIR,
@@ -36,11 +41,14 @@ function receivePosts(datadir, json) {
 }
 
 function fetchPosts(datadir) {
+  // this template can be eventually pushed up into the datamap
+  // when you are pulling data from different github repos
+  const template = "https://api.github.com/repos/stormasm/ghdata/contents/";
+  const dir = template + dataMap[datadir];
+
   return dispatch => {
     dispatch(requestPosts(datadir));
-    return fetch(
-      "https://api.github.com/repos/stormasm/checkbox-file-selector/contents/src/data/repos"
-    )
+    return fetch(dir)
       .then(response => response.json())
       .then(json => dispatch(receivePosts(datadir, json)));
   };
