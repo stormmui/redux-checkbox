@@ -42,7 +42,7 @@ class AsyncApp extends Component {
   }
 
   render() {
-    const { selectedDatadir, posts, isFetching, lastUpdated } = this.props;
+    const { selectedDatadir, files, isFetching, lastUpdated } = this.props;
     return (
       <div>
         <Picker
@@ -60,12 +60,12 @@ class AsyncApp extends Component {
             <button onClick={this.handleRefreshClick}>Refresh</button>
           )}
         </p>
-        {isFetching && posts.length === 0 && <h2>Loading...</h2>}
-        {!isFetching && posts.length === 0 && <h2>Empty.</h2>}
+        {isFetching && files.length === 0 && <h2>Loading...</h2>}
+        {!isFetching && files.length === 0 && <h2>Empty.</h2>}
 
-        {posts.length > 0 && (
+        {files.length > 0 && (
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <FileSelector repo={selectedDatadir} files={posts} />
+            <FileSelector repo={selectedDatadir} files={files} />
           </div>
         )}
       </div>
@@ -75,15 +75,15 @@ class AsyncApp extends Component {
 
 AsyncApp.propTypes = {
   selectedDatadir: PropTypes.string.isRequired,
-  posts: PropTypes.array.isRequired,
+  files: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
-  const { selectedDatadir, postsByDatadir } = state;
-  const { isFetching, lastUpdated, items: posts } = postsByDatadir[
+  const { selectedDatadir, filesByDatadir } = state;
+  const { isFetching, lastUpdated, items: files } = filesByDatadir[
     selectedDatadir
   ] || {
     isFetching: true,
@@ -92,7 +92,7 @@ function mapStateToProps(state) {
 
   return {
     selectedDatadir,
-    posts,
+    files,
     isFetching,
     lastUpdated
   };

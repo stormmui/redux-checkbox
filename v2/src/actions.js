@@ -30,7 +30,7 @@ function receivePosts(datadir, json) {
   return {
     type: RECEIVE_POSTS,
     datadir,
-    posts: json.map(child => child),
+    files: json.map(child => child),
     receivedAt: Date.now()
   };
 }
@@ -47,13 +47,13 @@ function fetchPosts(datadir) {
 }
 
 function shouldFetchPosts(state, datadir) {
-  const posts = state.postsByDatadir[datadir];
-  if (!posts) {
+  const files = state.filesByDatadir[datadir];
+  if (!files) {
     return true;
-  } else if (posts.isFetching) {
+  } else if (files.isFetching) {
     return false;
   } else {
-    return posts.didInvalidate;
+    return files.didInvalidate;
   }
 }
 

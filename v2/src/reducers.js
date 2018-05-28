@@ -15,7 +15,7 @@ function selectedDatadir(state = 'reactjs', action) {
   }
 }
 
-function posts(
+function files(
   state = {
     isFetching: false,
     didInvalidate: false,
@@ -37,7 +37,7 @@ function posts(
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        items: action.posts,
+        items: action.files,
         lastUpdated: action.receivedAt
       })
     default:
@@ -45,13 +45,13 @@ function posts(
   }
 }
 
-function postsByDatadir(state = {}, action) {
+function filesByDatadir(state = {}, action) {
   switch (action.type) {
     case INVALIDATE_DATADIR:
     case RECEIVE_POSTS:
     case REQUEST_POSTS:
       return Object.assign({}, state, {
-        [action.datadir]: posts(state[action.datadir], action)
+        [action.datadir]: files(state[action.datadir], action)
       })
     default:
       return state
@@ -59,7 +59,7 @@ function postsByDatadir(state = {}, action) {
 }
 
 const rootReducer = combineReducers({
-  postsByDatadir,
+  filesByDatadir,
   selectedDatadir
 })
 
