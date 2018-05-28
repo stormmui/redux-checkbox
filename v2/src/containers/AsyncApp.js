@@ -7,8 +7,6 @@ import {
   invalidateSubreddit
 } from "../actions";
 import Picker from "../components/Picker";
-import Posts from "../components/Posts";
-import Files from "../components/Files";
 import FileSelector from "../components/FileSelector";
 
 class AsyncApp extends Component {
