@@ -5,49 +5,49 @@ export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const SELECT_SUBREDDIT = "SELECT_SUBREDDIT";
 export const INVALIDATE_SUBREDDIT = "INVALIDATE_SUBREDDIT";
 
-export function selectSubreddit(subreddit) {
+export function selectSubreddit(datadir) {
   return {
     type: SELECT_SUBREDDIT,
-    subreddit
+    datadir
   };
 }
 
-export function invalidateSubreddit(subreddit) {
+export function invalidateSubreddit(datadir) {
   return {
     type: INVALIDATE_SUBREDDIT,
-    subreddit
+    datadir
   };
 }
 
-function requestPosts(subreddit) {
+function requestPosts(datadir) {
   return {
     type: REQUEST_POSTS,
-    subreddit
+    datadir
   };
 }
 
-function receivePosts(subreddit, json) {
+function receivePosts(datadir, json) {
   return {
     type: RECEIVE_POSTS,
-    subreddit,
+    datadir,
     posts: json.map(child => child),
     receivedAt: Date.now()
   };
 }
 
-function fetchPosts(subreddit) {
+function fetchPosts(datadir) {
   return dispatch => {
-    dispatch(requestPosts(subreddit));
+    dispatch(requestPosts(datadir));
     return fetch(
       "https://api.github.com/repos/stormasm/checkbox-file-selector/contents/src/data/repos"
     )
       .then(response => response.json())
-      .then(json => dispatch(receivePosts(subreddit, json)));
+      .then(json => dispatch(receivePosts(datadir, json)));
   };
 }
 
-function shouldFetchPosts(state, subreddit) {
-  const posts = state.postsBySubreddit[subreddit];
+function shouldFetchPosts(state, datadir) {
+  const posts = state.postsBySubreddit[datadir];
   if (!posts) {
     return true;
   } else if (posts.isFetching) {
@@ -57,10 +57,10 @@ function shouldFetchPosts(state, subreddit) {
   }
 }
 
-export function fetchPostsIfNeeded(subreddit) {
+export function fetchPostsIfNeeded(datadir) {
   return (dispatch, getState) => {
-    if (shouldFetchPosts(getState(), subreddit)) {
-      return dispatch(fetchPosts(subreddit));
+    if (shouldFetchPosts(getState(), datadir)) {
+      return dispatch(fetchPosts(datadir));
     }
   };
 }

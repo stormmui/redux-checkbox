@@ -9,7 +9,7 @@ import {
 function selectedSubreddit(state = 'reactjs', action) {
   switch (action.type) {
     case SELECT_SUBREDDIT:
-      return action.subreddit
+      return action.datadir
     default:
       return state
   }
@@ -51,7 +51,7 @@ function postsBySubreddit(state = {}, action) {
     case RECEIVE_POSTS:
     case REQUEST_POSTS:
       return Object.assign({}, state, {
-        [action.subreddit]: posts(state[action.subreddit], action)
+        [action.datadir]: posts(state[action.datadir], action)
       })
     default:
       return state
