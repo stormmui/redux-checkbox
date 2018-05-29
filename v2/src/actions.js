@@ -10,37 +10,37 @@ const dataMap = {
   data3: "data3"
 };
 
-export function selectDatadir(datadir) {
+export const selectDatadir = datadir => {
   return {
     type: SELECT_DATADIR,
     datadir
   };
-}
+};
 
-export function invalidateDatadir(datadir) {
+export const invalidateDatadir = datadir => {
   return {
     type: INVALIDATE_DATADIR,
     datadir
   };
-}
+};
 
-function requestPosts(datadir) {
+export const requestPosts = datadir => {
   return {
     type: REQUEST_POSTS,
     datadir
   };
-}
+};
 
-function receivePosts(datadir, json) {
+export const receivePosts = (datadir, json) => {
   return {
     type: RECEIVE_POSTS,
     datadir,
     files: json.map(child => child),
     receivedAt: Date.now()
   };
-}
+};
 
-function fetchPosts(datadir) {
+export const fetchPosts = datadir => {
   // this template can be eventually pushed up into the datamap
   // when you are pulling data from different github repos
   const template = "https://api.github.com/repos/stormasm/ghdata/contents/";
@@ -52,9 +52,9 @@ function fetchPosts(datadir) {
       .then(response => response.json())
       .then(json => dispatch(receivePosts(datadir, json)));
   };
-}
+};
 
-function shouldFetchPosts(state, datadir) {
+export const shouldFetchPosts = (state, datadir) => {
   const files = state.filesByDatadir[datadir];
   if (!files) {
     return true;
@@ -63,12 +63,12 @@ function shouldFetchPosts(state, datadir) {
   } else {
     return files.didInvalidate;
   }
-}
+};
 
-export function fetchPostsIfNeeded(datadir) {
+export const fetchPostsIfNeeded = datadir => {
   return (dispatch, getState) => {
     if (shouldFetchPosts(getState(), datadir)) {
       return dispatch(fetchPosts(datadir));
     }
   };
-}
+};
