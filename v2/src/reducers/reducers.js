@@ -1,14 +1,11 @@
-import { combineReducers } from "redux";
-import { reducer as reduxFormReducer } from "redux-form";
-
 import {
   SELECT_DATADIR,
   INVALIDATE_DATADIR,
   REQUEST_POSTS,
   RECEIVE_POSTS
-} from "./actions";
+} from "../actions";
 
-function selectedDatadir(state = "data2", action) {
+export function selectedDatadir(state = "data2", action) {
   switch (action.type) {
     case SELECT_DATADIR:
       return action.datadir;
@@ -47,7 +44,7 @@ function files(
   }
 }
 
-function filesByDatadir(state = {}, action) {
+export function filesByDatadir(state = {}, action) {
   switch (action.type) {
     case INVALIDATE_DATADIR:
     case RECEIVE_POSTS:
@@ -59,11 +56,3 @@ function filesByDatadir(state = {}, action) {
       return state;
   }
 }
-
-const rootReducer = combineReducers({
-  filesByDatadir,
-  selectedDatadir,
-  form: reduxFormReducer // mounted under "form"
-});
-
-export default rootReducer;
