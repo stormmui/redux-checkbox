@@ -2,13 +2,24 @@ import fetch from "cross-fetch";
 
 export const REQUEST_POSTS = "REQUEST_POSTS";
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
+export const ADD_DATADIR = "ADD_DATADIR";
 export const SELECT_DATADIR = "SELECT_DATADIR";
 export const INVALIDATE_DATADIR = "INVALIDATE_DATADIR";
 
 const dataMap = {
+  data1: "data1",
   data2: "data2",
-  data3: "data3"
+  data3: "data3",
+  data4: "data4",
+  data5: "data5"
 };
+
+export const addDatadir = datadir => {
+  return {
+    type: ADD_DATADIR,
+    datadir
+  }
+}
 
 export const selectDatadir = datadir => {
   return {
