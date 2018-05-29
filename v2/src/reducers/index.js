@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { reducer as reduxFormReducer } from "redux-form";
-import {filesByDatadir, selectedDatadir} from './files'
+import { filesByDatadir } from './files'
+import { selectedDatadir } from './datadir'
 
 const rootReducer = combineReducers({
   filesByDatadir,

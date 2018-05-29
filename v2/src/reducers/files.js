@@ -1,18 +1,8 @@
 import {
-  SELECT_DATADIR,
   INVALIDATE_DATADIR,
   REQUEST_POSTS,
   RECEIVE_POSTS
 } from "../actions";
-
-export function selectedDatadir(state = "data2", action) {
-  switch (action.type) {
-    case SELECT_DATADIR:
-      return action.datadir;
-    default:
-      return state;
-  }
-}
 
 function files(
   state = {
