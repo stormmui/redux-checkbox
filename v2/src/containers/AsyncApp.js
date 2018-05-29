@@ -8,6 +8,7 @@ import {
 } from "../actions";
 import Picker from "../components/Picker";
 import FileSelector from "../components/FileSelector";
+import SimpleForm from "../components/SimpleForm";
 
 class AsyncApp extends Component {
   constructor(props) {
@@ -41,6 +42,16 @@ class AsyncApp extends Component {
     dispatch(fetchPostsIfNeeded(selectedDatadir));
   }
 
+  showResults(values) {
+    new Promise(resolve => {
+      setTimeout(() => {
+        // simulate server latency
+        window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
+        resolve();
+      }, 500);
+    });
+  }
+
   render() {
     const { selectedDatadir, files, isFetching, lastUpdated } = this.props;
     return (
@@ -68,6 +79,9 @@ class AsyncApp extends Component {
             <FileSelector repo={selectedDatadir} files={files} />
           </div>
         )}
+        <div>
+          <SimpleForm onSubmit={this.showResults} />
+        </div>
       </div>
     );
   }

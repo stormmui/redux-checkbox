@@ -1,4 +1,6 @@
 import { combineReducers } from "redux";
+import { reducer as reduxFormReducer } from "redux-form";
+
 import {
   SELECT_DATADIR,
   INVALIDATE_DATADIR,
@@ -60,7 +62,8 @@ function filesByDatadir(state = {}, action) {
 
 const rootReducer = combineReducers({
   filesByDatadir,
-  selectedDatadir
+  selectedDatadir,
+  form: reduxFormReducer // mounted under "form"
 });
 
 export default rootReducer;
