@@ -6,8 +6,8 @@ export const SELECT_DATADIR = "SELECT_DATADIR";
 export const INVALIDATE_DATADIR = "INVALIDATE_DATADIR";
 
 const dataMap = {
-  data1: "data2",
-  data2: "data3"
+  data2: "data2",
+  data3: "data3"
 };
 
 export function selectDatadir(datadir) {
