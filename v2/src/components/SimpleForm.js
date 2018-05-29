@@ -6,7 +6,7 @@ const SimpleForm = props => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Add Data Directory</label>
+        <label>New Data Directory</label>
         <div>
           <Field
             name="dataDir"
