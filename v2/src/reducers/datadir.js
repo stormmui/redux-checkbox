@@ -1,6 +1,6 @@
 import { SELECT_DATADIR, ADD_DATADIR } from "../actions";
 
-export function selectedDatadir(state = "data2", action) {
+export function selectedDatadir(state = 'data2', action) {
   switch (action.type) {
     case SELECT_DATADIR:
       return action.datadir;
@@ -9,7 +9,7 @@ export function selectedDatadir(state = "data2", action) {
   }
 }
 
-export const datadirs = (state = [], action) => {
+export const datadirs = (state = ['data2','data3'], action) => {
   switch (action.type) {
     case ADD_DATADIR:
       return [...state, action.datadir];
