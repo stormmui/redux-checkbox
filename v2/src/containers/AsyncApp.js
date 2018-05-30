@@ -50,13 +50,19 @@ class AsyncApp extends Component {
   }
 
   render() {
-    const { selectedDatadir, files, isFetching, lastUpdated } = this.props;
+    const {
+      datadirs,
+      selectedDatadir,
+      files,
+      isFetching,
+      lastUpdated
+    } = this.props;
     return (
       <div>
         <Picker
           value={selectedDatadir}
           onChange={this.handleChange}
-          options={["data2", "data3"]}
+          options={datadirs}
         />
         <p>
           {lastUpdated && (
@@ -85,6 +91,7 @@ class AsyncApp extends Component {
 }
 
 AsyncApp.propTypes = {
+  datadirs: PropTypes.array.isRequired,
   selectedDatadir: PropTypes.string.isRequired,
   files: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
@@ -93,7 +100,7 @@ AsyncApp.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { selectedDatadir, filesByDatadir } = state;
+  const { datadirs, selectedDatadir, filesByDatadir } = state;
   const { isFetching, lastUpdated, items: files } = filesByDatadir[
     selectedDatadir
   ] || {
@@ -102,6 +109,7 @@ function mapStateToProps(state) {
   };
 
   return {
+    datadirs,
     selectedDatadir,
     files,
     isFetching,
