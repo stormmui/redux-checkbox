@@ -14,12 +14,14 @@ const dataMap = {
   data5: "data5"
 };
 
-export const addDataDir = datadir => {
+export const addDataDir = values => {
+  const datadir = values.dataDir;
+  console.log("addDataDir was called with ", datadir);
   return {
     type: ADD_DATADIR,
     datadir
-  }
-}
+  };
+};
 
 export const selectDatadir = datadir => {
   return {

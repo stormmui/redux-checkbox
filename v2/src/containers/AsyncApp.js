@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import {
   selectDatadir,
   fetchPostsIfNeeded,
-  invalidateDatadir
+  invalidateDatadir,
+  addDataDir
 } from "../actions";
 import Picker from "../components/Picker";
 import FileSelector from "../components/FileSelector";
@@ -43,6 +44,8 @@ class AsyncApp extends Component {
   }
 
   showResults(values) {
+    console.log(values);
+    addDataDir(values);
     new Promise(resolve => {
       setTimeout(() => {
         // simulate server latency
