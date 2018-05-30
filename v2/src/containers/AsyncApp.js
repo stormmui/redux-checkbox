@@ -9,14 +9,14 @@ import {
 } from "../actions";
 import Picker from "../components/Picker";
 import FileSelector from "../components/FileSelector";
-import SimpleForm from "../components/SimpleForm";
+import DataDirForm from "../components/DataDirForm";
 
 class AsyncApp extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleRefreshClick = this.handleRefreshClick.bind(this);
-    this.showResults = this.showResults.bind(this);
+    this.processDataDirForm = this.processDataDirForm.bind(this);
   }
 
   componentDidMount() {
@@ -44,17 +44,9 @@ class AsyncApp extends Component {
     dispatch(fetchPostsIfNeeded(selectedDatadir));
   }
 
-  showResults(values) {
+  processDataDirForm(values) {
     const { dispatch } = this.props;
-    console.log(values);
     dispatch(addDataDir(values));
-    new Promise(resolve => {
-      setTimeout(() => {
-        // simulate server latency
-        window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
-        resolve();
-      }, 500);
-    });
   }
 
   render() {
@@ -85,7 +77,7 @@ class AsyncApp extends Component {
           </div>
         )}
         <div>
-          <SimpleForm onSubmit={this.showResults} />
+          <DataDirForm onSubmit={this.processDataDirForm} />
         </div>
       </div>
     );
