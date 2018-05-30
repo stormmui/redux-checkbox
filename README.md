@@ -19,4 +19,5 @@ This code is inspired from a nice
 
 ##### Version 3
 
-* Checkbox state is stored in Redux along with a key
+* Checkbox state is **stored in Redux** along with a key
+* Redux-form is used to submit a new datadir
