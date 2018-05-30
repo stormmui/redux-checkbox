@@ -32,7 +32,6 @@ class FileSelector extends React.Component {
     const key = this.props.repo;
     this.setState({ checked: [] });
     localStorage.removeItem(key);
-    console.log(this.state);
   }
 
   handleSave() {

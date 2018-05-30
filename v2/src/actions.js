@@ -16,7 +16,6 @@ const dataMap = {
 
 export const addDataDir = values => {
   const datadir = values.dataDir;
-  console.log("addDataDir was called with ", datadir);
   return {
     type: ADD_DATADIR,
     datadir
