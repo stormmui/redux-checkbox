@@ -16,6 +16,7 @@ class AsyncApp extends Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleRefreshClick = this.handleRefreshClick.bind(this);
+    this.showResults = this.showResults.bind(this);
   }
 
   componentDidMount() {
@@ -44,8 +45,9 @@ class AsyncApp extends Component {
   }
 
   showResults(values) {
+    const { dispatch } = this.props;
     console.log(values);
-    addDataDir(values);
+    dispatch(addDataDir(values));
     new Promise(resolve => {
       setTimeout(() => {
         // simulate server latency
