@@ -29,5 +29,5 @@ const DataDirForm = props => {
 };
 
 export default reduxForm({
-  form: "simple" // a unique identifier for this form
+  form: "datadir" // a unique identifier for this form
 })(DataDirForm);
