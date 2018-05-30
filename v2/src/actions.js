@@ -14,7 +14,7 @@ const dataMap = {
   data5: "data5"
 };
 
-export const addDatadir = datadir => {
+export const addDataDir = datadir => {
   return {
     type: ADD_DATADIR,
     datadir
