@@ -10,11 +10,11 @@ This code is inspired from a nice
 
 ##### Version 1
 
-* Checkbox state is stored in the React State
+* Checkbox state is stored in React (default)
 
 ##### Version 2
 
-* Checkbox state is stored in the React State
+* Checkbox state is stored in React (default)
 * Redux-form is used to submit a new datadir
 
 ##### Version 3
