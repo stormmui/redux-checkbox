@@ -6,6 +6,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import { toggleCheckbox } from "../actions";
 
 const styles = theme => ({
   root: {
@@ -41,6 +42,12 @@ class FileSelector extends React.Component {
   }
 
   handleToggle = value => () => {
+    const datadir = value.name;
+    console.log('handleToggle ', datadir);
+    toggleCheckbox(datadir);
+  }
+
+  handleToggleNoRedux = value => () => {
     const { checked } = this.state;
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];

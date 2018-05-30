@@ -3,6 +3,7 @@ import fetch from "cross-fetch";
 export const REQUEST_POSTS = "REQUEST_POSTS";
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const ADD_DATADIR = "ADD_DATADIR";
+export const TOGGLE_CHECKBOX = "TOGGLE_CHECKBOX";
 export const SELECT_DATADIR = "SELECT_DATADIR";
 export const INVALIDATE_DATADIR = "INVALIDATE_DATADIR";
 
@@ -13,6 +14,13 @@ const dataMap = {
   data4: "data4",
   data5: "data5"
 };
+
+export const toggleCheckbox = datadir => {
+  return {
+    type: TOGGLE_CHECKBOX,
+    datadir
+  };
+}
 
 export const addDataDir = values => {
   const datadir = values.dataDir;
