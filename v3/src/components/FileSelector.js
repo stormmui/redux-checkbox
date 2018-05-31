@@ -8,6 +8,9 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { toggleCheckbox } from "../actions";
 
+import { connect } from 'react-redux';
+import compose from 'recompose/compose';
+
 const styles = theme => ({
   root: {
     width: "100%",
@@ -116,4 +119,13 @@ FileSelector.propTypes = {
   files: PropTypes.array.isRequired
 };
 
-export default withStyles(styles)(FileSelector);
+const mapDispatchToProps = dispatch => ({
+  handleToggle: value => dispatch(this.handleToggle(value))
+})
+
+export default compose(
+  withStyles(styles, {
+    name: 'FileSelector'
+  }),
+  connect(mapDispatchToProps),
+)(FileSelector);
