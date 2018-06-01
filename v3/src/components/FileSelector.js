@@ -45,6 +45,11 @@ class FileSelector extends React.Component {
   }
 
   handleToggle = value => () => {
+
+    // Without this next line of code
+    // The event will not fire !
+    const { toggleCheckbox } = this.props
+
     const datadir = value.name;
     console.log('handleToggle ', datadir);
     toggleCheckbox(datadir);
@@ -119,13 +124,13 @@ FileSelector.propTypes = {
   files: PropTypes.array.isRequired
 };
 
+/*
 const mapDispatchToProps = dispatch => ({
   handleToggle: value => dispatch(this.handleToggle(value))
 })
+*/
 
 export default compose(
-  withStyles(styles, {
-    name: 'FileSelector'
-  }),
-  connect(mapDispatchToProps),
+  withStyles(styles),
+  connect(null,{toggleCheckbox}),
 )(FileSelector);
