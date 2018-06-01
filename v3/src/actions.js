@@ -15,19 +15,19 @@ const dataMap = {
   data5: "data5"
 };
 
-/*
 export const toggleCheckbox = datadir => {
   return {
     type: TOGGLE_CHECKBOX,
     datadir
   };
 }
-*/
 
+/*
 export const toggleCheckbox = datadir => ({
     type: TOGGLE_CHECKBOX,
     datadir
 });
+*/
 
 export const addDataDir = values => {
   const datadir = values.dataDir;
